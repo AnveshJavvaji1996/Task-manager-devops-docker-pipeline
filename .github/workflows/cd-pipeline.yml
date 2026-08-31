@@ -22,7 +22,7 @@ jobs:
         run: |
             pwd
             ls -la
-            ls -la k8s/  
+            ls -la K8s/  
       - name: Configure AWS credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -34,12 +34,12 @@ jobs:
 
       - name: Set image tag in deployment manifest
         run: |
-          sed -i "s|anvesh3231/task-manager-app:.*|anvesh3231/task-manager-app:${{ github.event.inputs.image_tag }}|" k8s/deployment.yaml
+          sed -i "s|anvesh3231/task-manager-app:.*|anvesh3231/task-manager-app:${{ github.event.inputs.image_tag }}|" K8s/deployment.yaml
 
       - name: Deploy to EKS
         run: |
-          kubectl apply -f k8s/deployment.yaml
-          kubectl apply -f k8s/service.yaml
+          kubectl apply -f K8s/deployment.yaml
+          kubectl apply -f K8s/service.yaml
 
       - name: Verify rollout
         run: kubectl rollout status deployment/task-manager-deployment -n task-manager
