@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: task-manager-deployment
+  namespace: task-manager
   labels:
     app: task-manager
 spec:

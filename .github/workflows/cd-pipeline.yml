@@ -37,7 +37,8 @@ jobs:
           kubectl apply -f k8s/service.yaml
 
       - name: Verify rollout
-        run: kubectl rollout status deployment/task-manager-deployment
+        run: kubectl rollout status deployment/task-manager-deployment -n task-manager
+
 
       - name: Get service URL
-        run: kubectl get service task-manager-service
+        run: kubectl get service task-manager-service -n task-manager
