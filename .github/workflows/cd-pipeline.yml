@@ -39,6 +39,7 @@ jobs:
 
       - name: Deploy to EKS
         run: |
+          kubectl create namespace task-manager
           kubectl apply -f K8s/deployment.yaml
           kubectl apply -f K8s/service.yaml
 
