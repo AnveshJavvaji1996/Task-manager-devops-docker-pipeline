@@ -1,3 +1,61 @@
+# name: CD Pipeline - Deploy to AWS EKS
+
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       image_tag:
+#         description: 'Docker image tag to deploy'
+#         required: true
+#         default: 'latest'
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     environment: production
+#     permissions:
+#       id-token: write
+#       contents: read
+#     steps:
+#       - name: Checkout repo code
+#         uses: actions/checkout@v4
+
+#       - name: Debug - list repo contents
+#         run: |
+#             pwd
+#             ls -la
+#             ls -la K8s/  
+#       - name: Configure AWS credentials via OIDC
+#         uses: aws-actions/configure-aws-credentials@v4
+#         with:
+#           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+#           aws-region: ${{ secrets.AWS_REGION }}
+
+#       - name: Update kubeconfig
+#         run: aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
+
+#       - name: Set image tag in deployment manifest
+#         run: |
+#           sed -i "s|anvesh3231/task-manager-app:.*|anvesh3231/task-manager-app:${{ github.event.inputs.image_tag }}|" K8s/deployment.yaml
+
+#       - name: Deploy to EKS
+#         run: |
+#           kubectl create namespace task-manager
+#           kubectl apply -f K8s/deployment.yaml
+#           kubectl apply -f K8s/service.yaml
+
+#       - name: Verify rollout
+#         run: kubectl rollout status deployment/task-manager-deployment -n task-manager
+
+
+#       - name: Get service URL
+#         run: kubectl get service task-manager-service -n task-manager
+
+
+
+
+
+        #-------------------- Deployed using Helm Chart --------------------#
+
 name: CD Pipeline - Deploy to AWS EKS
 
 on:
@@ -6,7 +64,6 @@ on:
       image_tag:
         description: 'Docker image tag to deploy'
         required: true
-        default: 'latest'
 
 jobs:
   deploy:
@@ -21,9 +78,10 @@ jobs:
 
       - name: Debug - list repo contents
         run: |
-            pwd
-            ls -la
-            ls -la K8s/  
+          pwd
+          ls -la
+          ls -la helm-chart/
+
       - name: Configure AWS credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -33,19 +91,15 @@ jobs:
       - name: Update kubeconfig
         run: aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
 
-      - name: Set image tag in deployment manifest
+      - name: Deploy with Helm
         run: |
-          sed -i "s|anvesh3231/task-manager-app:.*|anvesh3231/task-manager-app:${{ github.event.inputs.image_tag }}|" K8s/deployment.yaml
-
-      - name: Deploy to EKS
-        run: |
-          kubectl create namespace task-manager
-          kubectl apply -f K8s/deployment.yaml
-          kubectl apply -f K8s/service.yaml
+          helm upgrade --install task-manager ./helm-chart \
+            --namespace task-manager \
+            --create-namespace \
+            --set image.tag=${{ github.event.inputs.image_tag }}
 
       - name: Verify rollout
         run: kubectl rollout status deployment/task-manager-deployment -n task-manager
-
 
       - name: Get service URL
         run: kubectl get service task-manager-service -n task-manager
