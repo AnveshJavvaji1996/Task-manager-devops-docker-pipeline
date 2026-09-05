@@ -1,6 +1,6 @@
 name: Task Manager CI/CD pipeline
 
-on: workflow_dispatch
+on: push
 
 jobs:
     test:
