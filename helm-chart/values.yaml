@@ -1,0 +1,12 @@
+replicaCount: 2
+
+image:
+  repository: anvesh3231/task-manager-app
+  tag: latest
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 3000
+
+namespace: task-manager
