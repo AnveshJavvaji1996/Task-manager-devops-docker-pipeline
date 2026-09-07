@@ -6,17 +6,33 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>📝 Task Manager</h1>
+  <nav class="navbar">
+    <span class="brand">📝 Task Manager</span>
+    <div class="nav-links">
+      <a href="login.html">Login</a>
+      <a href="signup.html" class="btn-primary">Sign Up</a>
+    </div>
+  </nav>
 
-    <form id="task-form">
-      <input type="text" id="task-title" placeholder="Enter a new task..." required>
-      <button type="submit">Add Task</button>
-    </form>
+  <section class="hero">
+    <h1>Organize your day, effortlessly.</h1>
+    <p>Task Manager helps you capture tasks, track progress, and stay on top of what matters — all in one clean, simple dashboard.</p>
+    <a href="signup.html" class="btn-primary large">Get Started Free</a>
+  </section>
 
-    <ul id="task-list"></ul>
-  </div>
-
-  <script src="script.js"></script>
+  <section class="features">
+    <div class="feature-card">
+      <h3>✅ Simple Task Tracking</h3>
+      <p>Add, complete, and manage your tasks in seconds.</p>
+    </div>
+    <div class="feature-card">
+      <h3>📊 Progress at a Glance</h3>
+      <p>A visual progress bar shows exactly how much you've completed.</p>
+    </div>
+    <div class="feature-card">
+      <h3>🔒 Your Data, Secured</h3>
+      <p>Every account is password-protected and your tasks are private to you.</p>
+    </div>
+  </section>
 </body>
 </html>

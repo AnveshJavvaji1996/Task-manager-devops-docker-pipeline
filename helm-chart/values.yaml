@@ -2,7 +2,7 @@ replicaCount: 2
 
 image:
   repository: anvesh3231/task-manager-app
-  tag: latest
+  tag: v1.0.0
 
 service:
   type: LoadBalancer
@@ -10,3 +10,9 @@ service:
   targetPort: 3000
 
 namespace: task-manager
+
+mongo:
+  image: mongo:7
+  storageSize: 1Gi
+
+secretName: app-secrets
