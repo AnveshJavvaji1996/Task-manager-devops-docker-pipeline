@@ -2,7 +2,7 @@ replicaCount: 2
 
 image:
   repository: anvesh3231/task-manager-app
-  tag: v1.0.0
+  tag: latest
 
 service:
   type: LoadBalancer
