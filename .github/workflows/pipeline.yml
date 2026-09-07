@@ -25,6 +25,9 @@ jobs:
 
           - name: Run tests
             run:  npm test
+            env:
+              MONGO_URI: mongodb://localhost:27017/taskmanager-test
+              JWT_SECRET: test-secret-for-ci-only
          
     build-scan-push:
         needs: test
