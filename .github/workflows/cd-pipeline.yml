@@ -90,11 +90,14 @@ jobs:
 
       - name: Update kubeconfig
         run: aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
+      
+      - name: Ensure namespace exists
+        run: kubectl create namespace task-manager --dry-run=client -o yaml | kubectl apply -f -
 
       - name: Deploy with Helm
         run: |
           helm upgrade --install task-manager ./helm-chart \
-            --namespace task-manager \
+           --namespace task-manager \
            --set image.tag=${{ github.event.inputs.image_tag }}
 
       - name: Verify rollout
