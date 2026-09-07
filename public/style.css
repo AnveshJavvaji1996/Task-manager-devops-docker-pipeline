@@ -1,73 +1,60 @@
-* {
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
+* { box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; }
+body { background: #f4f6f9; color: #333; }
 
-body {
-  background: #f4f4f9;
-  display: flex;
-  justify-content: center;
-  padding-top: 50px;
-}
-
-.container {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  width: 400px;
-}
-
-h1 {
-  text-align: center;
-  color: #333;
-}
-
-#task-form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-#task-title {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-button {
-  padding: 10px 15px;
-  background: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #45a049;
-}
-
-#task-list {
-  list-style: none;
-  padding: 0;
-}
-
-#task-list li {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
+  padding: 20px 40px;
+  background: white;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
 }
+.brand { font-size: 20px; font-weight: bold; color: #2c3e50; }
+.nav-links a { margin-left: 20px; text-decoration: none; color: #333; }
+.btn-primary {
+  background: #4CAF50; color: white !important; padding: 8px 16px;
+  border-radius: 6px; border: none; cursor: pointer;
+}
+.btn-primary.large { padding: 14px 28px; font-size: 16px; display: inline-block; margin-top: 20px; }
+.btn-secondary { background: #e74c3c; color: white; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; }
 
-.delete-btn {
-  background: #e74c3c;
-  padding: 5px 10px;
-  font-size: 12px;
-}
+.hero { text-align: center; padding: 80px 20px; }
+.hero h1 { font-size: 36px; color: #2c3e50; margin-bottom: 16px; }
+.hero p { font-size: 18px; color: #666; max-width: 500px; margin: 0 auto; }
 
-.delete-btn:hover {
-  background: #c0392b;
+.features { display: flex; gap: 20px; justify-content: center; padding: 40px; flex-wrap: wrap; }
+.feature-card { background: white; padding: 24px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); width: 260px; }
+
+.auth-container {
+  max-width: 380px; margin: 80px auto; background: white; padding: 32px;
+  border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
+.auth-container h2 { margin-bottom: 20px; text-align: center; }
+.auth-container input {
+  width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 6px;
+}
+.auth-container button {
+  width: 100%; padding: 10px; background: #4CAF50; color: white; border: none;
+  border-radius: 6px; cursor: pointer; font-size: 15px;
+}
+.switch-link { text-align: center; margin-top: 14px; font-size: 14px; }
+.error { color: #e74c3c; margin-top: 10px; font-size: 14px; text-align: center; }
+
+.dashboard-container { max-width: 500px; margin: 40px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+#greeting { margin-bottom: 24px; color: #2c3e50; }
+
+.progress-section { margin-bottom: 24px; }
+.progress-label { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; color: #555; }
+.progress-bar-bg { background: #eee; border-radius: 10px; height: 14px; overflow: hidden; }
+.progress-bar-fill { background: #4CAF50; height: 100%; width: 0%; transition: width 0.3s ease; }
+
+#task-form { display: flex; gap: 10px; margin-bottom: 20px; }
+#task-form input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 6px; }
+#task-form button { padding: 10px 16px; background: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer; }
+
+#task-list { list-style: none; }
+#task-list li { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; }
+#task-list li.completed span { text-decoration: line-through; color: #999; }
+.task-actions button { margin-left: 8px; padding: 4px 10px; border: none; border-radius: 4px; cursor: pointer; }
+.complete-btn { background: #3498db; color: white; }
+.delete-btn { background: #e74c3c; color: white; }
