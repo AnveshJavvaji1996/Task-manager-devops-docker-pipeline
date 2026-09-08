@@ -3,7 +3,7 @@ name: Task Manager CI/CD pipeline
 on: push
 
 jobs:
-    test:
+    test: 
         runs-on: ubuntu-latest
         services:
           mongodb:
